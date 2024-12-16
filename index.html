@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Te Amo - Minion Edition</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+
+        body {
+            font-family: 'Comic Neue', cursive;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #ffed33;
+            color: #000;
+            margin: 0;
+        }
+        h1 {
+            font-size: 3em;
+            text-shadow: 2px 2px 4px #000000;
+            color: #0056b3;
+        }
+        .container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .gift-box {
+            margin: 20px;
+            cursor: pointer;
+        }
+        img {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        img:hover {
+            transform: scale(1.1);
+        }
+        iframe {
+            width: 80%;
+            height: 315px;
+            margin: 20px 0;
+            border: 5px solid #0056b3;
+            border-radius: 10px;
+        }
+    </style>
+    <script>
+        function seleccionarCaja(caja) {
+            if (caja === 'caja1') {
+                localStorage.setItem('selectedBox', 'caja1');
+                document.getElementById("caja1").style.display='none'
+                document.getElementById("caja2").style.display='none'
+                window.location.href = "pagina2.html";
+            } else {
+                localStorage.setItem('selectedBox', 'caja2');
+                document.getElementById("caja1").style.display='none'
+                document.getElementById("caja1").style.display='none'
+                window.location.href = "pagina3.html";
+            }
+        }
+        window.onload = function() {
+            var selectedBox = localStorage.getItem('selectedBox');
+            if (selectedBox === 'caja1') {
+                document.getElementById('caja2').style.display = 'none';
+            } else if (selectedBox === 'caja2') {
+                document.getElementById('caja1').style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>¡¡Bienvenida a tu Regalo!!</h1>
+
+        <!-- Video estilo Minion -->
+        <iframe src="https://www.youtube.com/embed/-iLw8vaA1PE" frameborder="0" allowfullscreen></iframe>
+
+        <!-- Imágenes de las cajas de regalo -->
+        <div>
+            <img id="caja1" src="caja1.jpg" 
+                 alt="Caja de Regalo 1" class="gift-box" onclick="seleccionarCaja('caja1')">
+            <img id="caja2" src="caja2.jpg" 
+                 alt="Caja de Regalo 2" class="gift-box" onclick="seleccionarCaja('caja2')">
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acertijos Especiales</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+
+        body {
+            font-family: 'Comic Neue', cursive;
+            background-color: #ffed33;
+            color: #000;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 3em;
+            text-shadow: 2px 2px 4px #000;
+            color: #0056b3;
+            margin-bottom: 20px;
+        }
+
+        .riddle {
+            margin: 20px 0;
+            padding: 20px;
+            border: 2px solid #0056b3;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .input-section {
+            margin-top: 20px;
+        }
+
+        input {
+            font-size: 1.2em;
+            padding: 10px;
+            border: 2px solid #0056b3;
+            border-radius: 5px;
+        }
+
+        button {
+            margin-left: 10px;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            background-color: #0056b3;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #004494;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+
+        .code {
+            font-size: 5em;
+            color: #0056b3;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        const answers = ['barco', 'dado', 'cielo', 'iglesia', 'jardin', 'corazon'];  // Respuestas actualizadas
+        let currentRiddle = 0;
+        let code = '';
+
+        function checkAnswer(riddleIndex) {
+            const userAnswer = document.getElementById(`answer-${riddleIndex}`).value.trim().toLowerCase();
+            const feedback = document.getElementById(`feedback-${riddleIndex}`);
+
+            if (userAnswer === answers[riddleIndex]) {
+                feedback.textContent = '¡Correcto!';
+                feedback.className = 'success';
+                code += answers[riddleIndex][0].toUpperCase(); // Guardamos la primera letra en mayúscula
+                nextRiddle();
+            } else {
+                feedback.textContent = 'Respuesta incorrecta. Intenta de nuevo.';
+                feedback.className = 'error';
+            }
+        }
+
+        function nextRiddle() {
+            document.getElementById(`riddle-${currentRiddle}`).classList.add('hidden');
+            currentRiddle++;
+
+            if (currentRiddle < answers.length) {
+                document.getElementById(`riddle-${currentRiddle}`).classList.remove('hidden');
+            } else {
+                showCode(); // Mostrar el código al finalizar
+            }
+        }
+
+        function showCode() {
+            // Al terminar, mostramos el código formado por las primeras letras de las respuestas correctas
+            document.body.innerHTML = `<h1>¡Felicidades, has resuelto todos los acertijos!</h1>
+                                       <div class="code">${code}</div>`;
+        }
+    </script>
+</head>
+<body>
+    <h1>¡Resuelve los Acertijos!</h1>
+
+    <!-- Acertijo 1 -->
+    <div id="riddle-0" class="riddle">
+        <p>Este objeto suele navegar sobre el agua, desafiando las olas con su estructura. Lo encuentras en el mar o en grandes lagos, y es esencial para transportar personas o mercancías. ¿Qué es?</p>
+        <div class="input-section">
+            <input type="text" id="answer-0" placeholder="Escribe tu respuesta">
+            <button onclick="checkAnswer(0)">Comprobar</button>
+        </div>
+        <p id="feedback-0"></p>
+    </div>
+
+    <!-- Acertijo 2 -->
+    <div id="riddle-1" class="riddle hidden">
+        <p>A veces soy pequeño y otras veces gigante. Tengo muchas caras y soy un objeto que al lanzarme puede cambiar el rumbo de un juego. ¿Qué soy?</p>
+        <div class="input-section">
+            <input type="text" id="answer-1" placeholder="Escribe tu respuesta">
+            <button onclick="checkAnswer(1)">Comprobar</button>
+        </div>
+        <p id="feedback-1"></p>
+    </div>
+
+    <!-- Acertijo 3 -->
+    <div id="riddle-2" class="riddle hidden">
+        <p>Estoy en el cielo y me cubro de nubes. En el día me puedo ver con claridad, y por la noche a veces te pierdes en mí. ¿Qué soy?</p>
+        <div class="input-section">
+            <input type="text" id="answer-2" placeholder="Escribe tu respuesta">
+            <button onclick="checkAnswer(2)">Comprobar</button>
+        </div>
+        <p id="feedback-2"></p>
+    </div>
+
+    <!-- Acertijo 4 -->
+    <div id="riddle-3" class="riddle hidden">
+        <p>En mi interior, miles de personas se reúnen para buscar paz, perdón y esperanza. He sido erguido por siglos como un símbolo de fe. ¿Qué soy?</p>
+        <div class="input-section">
+            <input type="text" id="answer-3" placeholder="Escribe tu respuesta">
+            <button onclick="checkAnswer(3)">Comprobar</button>
+        </div>
+        <p id="feedback-3"></p>
+    </div>
+
+    <!-- Acertijo 5 -->
+    <div id="riddle-4" class="riddle hidden">
+        <p>En mi pequeño espacio crecen flores y árboles, y los seres humanos encuentran en mí un respiro para escapar del ajetreo diario. ¿Qué soy?</p>
+        <div class="input-section">
+            <input type="text" id="answer-4" placeholder="Escribe tu respuesta">
+            <button onclick="checkAnswer(4)">Comprobar</button>
+        </div>
+        <p id="feedback-4"></p>
+    </div>
+
+    <!-- Acertijo 6 -->
+    <div id="riddle-5" class="riddle hidden">
+        <p>Soy esencial para la vida, fluyo y me adapto a los contornos. Sin mí no podrías sobrevivir, y cuando me encuentras en grandes cantidades, suelo ser un peligro. ¿Qué soy?</p>
+        <div class="input-section">
+            <input type="text" id="answer-5" placeholder="Escribe tu respuesta">
+            <button onclick="checkAnswer(5)">Comprobar</button>
+        </div>
+        <p id="feedback-5"></p>
+    </div>
+</body>
+</html>
